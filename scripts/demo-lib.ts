@@ -56,7 +56,7 @@ export async function loadExpected(): Promise<Record<string, unknown>> { return 
 export async function loadState(): Promise<DemoState | null> { try { return await readJson<DemoState>(STATE_PATH); } catch { return null; } }
 
 export function assertFixture(fixture: DemoFixture): void {
-  if (!fixture.datasetId || !Array.isArray(fixture.conversations) || fixture.conversations.length !== 6) throw new Error("Northstar fixture must contain exactly six conversations and a datasetId");
+  if (!fixture.datasetId || !Array.isArray(fixture.conversations) || fixture.conversations.length !== 6) throw new Error("Operator Week fixture must contain exactly six conversations and a datasetId");
   const keys = fixture.conversations.map((conversation) => conversation.sourceKey);
   if (new Set(keys).size !== keys.length || keys.some((key) => !key.startsWith("threadkeeper-demo:"))) throw new Error("Every fixture conversation needs a unique threadkeeper-demo: sourceKey");
   const dates = fixture.conversations.map((conversation) => conversation.createdAt);

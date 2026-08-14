@@ -1,9 +1,13 @@
-# Threadkeeper Northstar Demo — Runbook
+# Threadkeeper Operator Week Demo — Runbook
 
 A deterministic, six-conversation fixture (`fixtures/threadkeeper-demo.json`, Jan–Aug 2026) that
 exercises threads, direct and inferred open loops, claim supersession, archaeology, a serendipity
 connection, dismissal suppression, and deletion propagation end to end. `expected-results.json` is
 the checklist `demo-verify.ts` grades the live output against.
+
+The story: a solo operator is shipping a customer billing fix for Marlowe Freight, following up on
+Marlowe's own overdue invoice, and rescheduling the customer call to review the fix — one coherent
+week of work, not three disconnected samples.
 
 ## Safety model — read this before running anything
 
@@ -83,15 +87,15 @@ outside a real conversation turn. Because of this:
    ```
    Or `bun run demo:all` to do reset → seed → process ×2 → verify in sequence (the double process run is the idempotency check: identical input the second time must not create new visible proposals or connections).
 6. Inspect `demo/state.json` for the full seed/process/verify trail, and the disposable workspace's Threadkeeper app (`plugins~threadkeeper~threadkeeper`) for the dashboard view.
-7. For the deletion-propagation checklist item (`expected-results.json`'s `deletion` block, keyed on the `research-notes` conversation), delete that one conversation through the app or a host-level action, then re-run `bun run demo:verify` and confirm its derived thread membership, evidence, and private index document are gone. There is no CLI command for deleting a single conversation, so this step is manual by design — see `LIVE-HOOK-PROCEDURE.md`.
+7. For the deletion-propagation checklist item (`expected-results.json`'s `deletion` block, keyed on the `invoice-notes` conversation), delete that one conversation through the app or a host-level action, then re-run `bun run demo:verify` and confirm its derived thread membership, evidence, and private index document are gone. There is no CLI command for deleting a single conversation, so this step is manual by design — see `LIVE-HOOK-PROCEDURE.md`.
 8. `bun run demo:reset` when done, or just discard the disposable workspace entirely.
 
 ## What "green" means
 
 `demo:verify` exits non-zero and prints which named checks failed. Because extraction and
 archaeology depend on the disposable daemon's actual configured model, exact wording will vary
-model to model — the checks grep for required *concepts* (Northstar, client briefing, weekly,
-monthly, the landing-page due date, the five-developments briefing structure, and so on), not exact
+model to model — the checks grep for required *concepts* (Marlowe, the billing fix, invoice
+follow-up, Wednesday, Thursday, the production-verification due date, and so on), not exact
 strings. A failure is worth investigating either way: it means the pipeline didn't surface a
 concept the fixture is designed to produce.
 

@@ -10,7 +10,7 @@ Threadkeeper maintains evidence-backed continuity across conversations. It track
 - Setup, Context Archaeologist, and review skills.
 - A quiet recurring queue schedule.
 - Bounded HTTP routes and a responsive review dashboard.
-- A separate, resettable Product Launch demo dataset.
+- A separate, resettable Operator Week demo dataset.
 
 ## Install
 
@@ -51,7 +51,7 @@ Serendipity is enabled by default, while sensitive categories are excluded. Work
 
 Runtime state is created at `InitContext.pluginStorageDir/threadkeeper.sqlite`. For an installed user plugin this resolves to `plugins/threadkeeper/data/threadkeeper.sqlite`.
 
-The Product Launch demo uses a physically separate `threadkeeper-demo.sqlite` file and never replaces or writes through the live database singleton. Both databases are generated locally and excluded from Git.
+The Operator Week demo uses a physically separate `threadkeeper-demo.sqlite` file and never replaces or writes through the live database singleton. Both databases are generated locally and excluded from Git.
 
 Uninstalling the plugin removes its directory and plugin-owned data. Back up the `data/` directory first if the history should be retained. See [PRIVACY.md](./PRIVACY.md) for the complete data-handling model.
 

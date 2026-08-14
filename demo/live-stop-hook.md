@@ -21,7 +21,7 @@ This procedure verifies the real `stop` lifecycle path. Do not substitute `demo-
 
 Create a normal conversation in the disposable assistant and send exactly one user turn:
 
-> For Northstar, I finished the landing-page copy. I still need to publish the landing page by August 20, 2026.
+> For the Marlowe billing fix, production deploy is done. I still need to verify the next invoice run by August 20, 2026.
 
 After the turn commits, inspect Threadkeeper status or the plugin database through its supported tool/route. Expected:
 
@@ -38,7 +38,7 @@ assistant schedules execute <threadkeeper-process-queue-id> --json
 assistant schedules runs <threadkeeper-process-queue-id> --limit 5 --json
 ```
 
-The processor should ingest the live conversation and update the landing-page loop with due date `2026-08-20`. It must **not** close the loop: writing copy is not publishing the page.
+The processor should ingest the live conversation and update the invoice-verification loop with due date `2026-08-20`. It must **not** close the loop: a production deploy is not the same as a verified invoice run.
 
 ## Failure-open checks
 

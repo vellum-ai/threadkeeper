@@ -13,4 +13,4 @@ await run("demo-seed.ts");
 await run("demo-process.ts");
 await run("demo-process.ts");
 await run("demo-verify.ts");
-console.log(JSON.stringify({ ok: true, message: "Northstar demo reset, seeded, processed twice, and verified." }, null, 2));
+console.log(JSON.stringify({ ok: true, message: "Operator Week demo reset, seeded, processed twice, and verified." }, null, 2));

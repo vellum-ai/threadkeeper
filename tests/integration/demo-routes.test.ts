@@ -16,7 +16,7 @@ import * as resetRoute from "../../routes/demo-reset.ts";
 
 function count(db: ReturnType<typeof freshDb>, table: string): number { return (db.query(`SELECT COUNT(*) n FROM ${table}`).get() as { n: number }).n; }
 
-describe("isolated Product Launch demo routes", () => {
+describe("isolated Operator Week demo routes", () => {
   beforeEach(() => {
     freshDb();
     resetDemoDbForTests(join(mkdtempSync(join(tmpdir(), "threadkeeper-demo-test-")), "demo.sqlite"));
@@ -35,14 +35,14 @@ describe("isolated Product Launch demo routes", () => {
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({ dataset: "demo", threadCount: 2, openLoopCount: 1, proposalCount: 1, connectionCount: 1, reviewCount: 2, indexDocumentCount: 2, queueDepth: 0, isolatedFromLive: true });
     const threads = await (await threadsRoute.GET(new Request("http://local/threads?dataset=demo&status=all&limit=50"))).json();
-    expect(threads.items.map((item: any) => item.title)).toEqual(["Northstar product launch", "Client briefing workflow"]);
+    expect(threads.items.map((item: any) => item.title)).toEqual(["Marlowe billing fix", "Marlowe invoice follow-up"]);
   });
 
   test("demo surfaces include readable evidence and completed archaeology", async () => {
     const loops = await (await openLoopsRoute.GET(new Request("http://local/open-loops?dataset=demo&status=open"))).json();
     expect(loops.items).toHaveLength(1);
-    expect(loops.items[0].title).toBe("Publish the Northstar landing page");
-    expect(loops.items[0].sources[0].conversationTitle).toBe("Northstar restart");
+    expect(loops.items[0].title).toBe("Verify the production billing fix against Marlowe's next invoice run");
+    expect(loops.items[0].sources[0].conversationTitle).toBe("Billing fix verification restart");
 
     const archaeology = await (await reviewRoute.GET(new Request("http://local/review?dataset=demo&type=archaeology"))).json();
     expect(archaeology.items[0].status).toBe("completed");
@@ -51,7 +51,7 @@ describe("isolated Product Launch demo routes", () => {
 
   test("demo actions mutate demo only and reset restores it", async () => {
     const live = freshDb(); createThread(live, "Live invariant", null); const before = count(live, "threads");
-    const action = await actionRoute.POST(new Request("http://local/action", { method: "POST", body: JSON.stringify({ dataset: "demo", action: "reject_proposal", targetId: DEMO_IDS.cadenceProposal }) }));
+    const action = await actionRoute.POST(new Request("http://local/action", { method: "POST", body: JSON.stringify({ dataset: "demo", action: "reject_proposal", targetId: DEMO_IDS.callProposal }) }));
     expect(action.status).toBe(202);
     const afterAction = await (await statusRoute.GET(new Request("http://local/status?dataset=demo"))).json();
     expect(afterAction.proposalCount).toBe(0);

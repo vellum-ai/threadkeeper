@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "datasetId": "threadkeeper-demo-northstar-2026",
+  "datasetId": "threadkeeper-demo-operator-week-2026",
   "sourceKeys": [
-    "threadkeeper-demo:northstar-kickoff",
-    "threadkeeper-demo:client-briefing-workflow",
-    "threadkeeper-demo:northstar-expansion",
-    "threadkeeper-demo:northstar-correction",
-    "threadkeeper-demo:research-notes",
-    "threadkeeper-demo:northstar-restart"
+    "threadkeeper-demo:billing-bug-report",
+    "threadkeeper-demo:invoice-workflow",
+    "threadkeeper-demo:fix-scope-grows",
+    "threadkeeper-demo:call-rescheduled",
+    "threadkeeper-demo:invoice-notes",
+    "threadkeeper-demo:fix-verification-restart"
   ],
   "dateRange": {
     "start": "2026-01-08",
@@ -15,52 +15,52 @@
   },
   "threads": {
     "minimum": 2,
-    "requiredConcepts": ["Northstar", "client briefing"],
+    "requiredConcepts": ["Marlowe billing fix", "invoice follow-up"],
     "requiredSourceKeyCoverage": {
-      "Northstar": [
-        "threadkeeper-demo:northstar-kickoff",
-        "threadkeeper-demo:northstar-expansion",
-        "threadkeeper-demo:northstar-correction",
-        "threadkeeper-demo:northstar-restart"
+      "Marlowe billing fix": [
+        "threadkeeper-demo:billing-bug-report",
+        "threadkeeper-demo:fix-scope-grows",
+        "threadkeeper-demo:call-rescheduled",
+        "threadkeeper-demo:fix-verification-restart"
       ],
-      "client briefing": [
-        "threadkeeper-demo:client-briefing-workflow",
-        "threadkeeper-demo:research-notes"
+      "invoice follow-up": [
+        "threadkeeper-demo:invoice-workflow",
+        "threadkeeper-demo:invoice-notes"
       ]
     }
   },
   "openLoops": {
     "requiredOpen": [
       {
-        "concept": "publish landing page",
+        "concept": "verify the production billing fix",
         "dueDate": "2026-08-20",
         "status": "open"
       }
     ],
     "requiredClosed": [
-      { "concept": "buy domain", "status": "closed" },
-      { "concept": "draft issue zero", "status": "closed" }
+      { "concept": "ship the billing fix to staging", "status": "closed" },
+      { "concept": "draft the customer-facing fix summary", "status": "closed" }
     ],
-    "forbiddenOpenConcepts": ["buy domain", "draft issue zero"],
-    "completionDistinction": "writing landing-page copy is not publishing the landing page"
+    "forbiddenOpenConcepts": ["ship the billing fix to staging", "draft the customer-facing fix summary"],
+    "completionDistinction": "shipping the fix to staging is not the same as verifying it in production"
   },
   "claims": {
-    "requiredCurrent": ["monthly cadence"],
-    "requiredHistorical": ["weekly cadence"],
+    "requiredCurrent": ["thursday 10:00 am call time"],
+    "requiredHistorical": ["wednesday 2:00 pm call time"],
     "supersession": {
-      "old": "weekly cadence",
-      "new": "monthly cadence",
+      "old": "wednesday 2:00 pm call time",
+      "new": "thursday 10:00 am call time",
       "requiresReviewableProposal": true
     }
   },
   "archaeology": {
-    "threadConcept": "Northstar",
+    "threadConcept": "Marlowe billing fix",
     "minimumTimelineEvents": 4,
     "requiredChronology": [
-      { "date": "2026-01-08", "concept": "weekly" },
+      { "date": "2026-01-08", "concept": "duplicate line items" },
       { "date": "2026-04-03", "concept": "scope expansion" },
-      { "date": "2026-06-18", "concept": "monthly" },
-      { "date": "2026-08-01", "concept": "restart" }
+      { "date": "2026-06-18", "concept": "call rescheduled" },
+      { "date": "2026-08-01", "concept": "verification restart" }
     ],
     "requiredSections": ["timeline", "known", "inferred", "unknown", "unresolved"],
     "mustNotConclude": ["permanently abandoned"]
@@ -68,21 +68,21 @@
   "connections": {
     "required": [
       {
-        "relationType": "reuse",
-        "fromConcept": "client briefing",
-        "toConcept": "Northstar",
+        "relationType": "bridge",
+        "fromConcept": "invoice follow-up",
+        "toConcept": "Marlowe billing fix",
         "proposalOnly": true,
-        "explanationConcepts": ["five developments", "why each matters", "one recommended action"],
+        "explanationConcepts": ["billing fix", "overdue invoice"],
         "requiresEvidenceFromBothThreads": true
       }
     ],
     "dismissalSuppression": {
-      "candidate": "client briefing -> Northstar reuse",
+      "candidate": "invoice follow-up -> Marlowe billing fix bridge",
       "dismissThenReprocess": "must remain suppressed"
     }
   },
   "deletion": {
-    "sourceKey": "threadkeeper-demo:research-notes",
+    "sourceKey": "threadkeeper-demo:invoice-notes",
     "mustRemoveDerivedState": true,
     "mustRemovePrivateIndexDocument": true,
     "repeatedCleanupIsSafe": true

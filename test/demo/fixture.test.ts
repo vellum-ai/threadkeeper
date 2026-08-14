@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { assertFixture, loadExpected, loadFixture } from "../../scripts/demo-lib.ts";
 
-describe("Northstar deterministic demo fixture", () => {
+describe("Operator Week deterministic demo fixture", () => {
   test("contains six stable conversations in chronological order", async () => {
     const fixture = await loadFixture();
     expect(() => assertFixture(fixture)).not.toThrow();
@@ -20,6 +20,6 @@ describe("Northstar deterministic demo fixture", () => {
   test("contains the correction, closures, due date, and reuse evidence", async () => {
     const fixture = await loadFixture();
     const text = JSON.stringify(fixture).toLowerCase();
-    for (const phrase of ["monthly is better than weekly", "bought the northstar domain", "issue zero is drafted", "august 20, 2026", "client briefing structure"]) expect(text).toContain(phrase);
+    for (const phrase of ["duplicate line items", "shipped the fix to staging", "deployed to production", "august 20, 2026", "invoice follow-up"]) expect(text).toContain(phrase);
   });
 });

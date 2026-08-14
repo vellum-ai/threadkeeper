@@ -1,6 +1,6 @@
 # Live Hook Verification Procedure
 
-The Northstar fixture (`demo:seed`) imports conversations via `assistant conversations import`,
+The Operator Week fixture (`demo:seed`) imports conversations via `assistant conversations import`,
 which writes rows directly into the conversation store — it never runs the agent loop, so the
 `stop` hook never fires for those rows. `demo:process` compensates by marking them dirty directly.
 That means the bulk demo never actually exercises the live capture path end to end.
@@ -23,7 +23,7 @@ uses (never against a real archive; see `RUNBOOK.md`'s safety model first).
    ```bash
    assistant conversations new "Threadkeeper live hook check"
    ```
-   Then send a message through your normal client (or `assistant conversations wake <id>` with an appropriate hint, if your setup supports driving a turn headlessly) containing something like: *"I need to renew the newsletter domain by next Friday."* Let the turn complete normally.
+   Then send a message through your normal client (or `assistant conversations wake <id>` with an appropriate hint, if your setup supports driving a turn headlessly) containing something like: *"I need to confirm the Marlowe billing fix in production before Thursday's call."* Let the turn complete normally.
 3. Immediately after the turn ends, inspect the plugin's dirty queue directly (bounded, read-only):
    ```bash
    assistant bash "sqlite3 <disposable-workspace>/plugins/threadkeeper/data/threadkeeper.sqlite \"SELECT conversation_id, touched_at FROM dirty_conversations\""
@@ -43,7 +43,7 @@ uses (never against a real archive; see `RUNBOOK.md`'s safety model first).
    ```bash
    assistant bash "sqlite3 <disposable-workspace>/plugins/threadkeeper/data/threadkeeper.sqlite \"SELECT description, status, origin_type, due_at FROM open_loops ORDER BY created_at DESC LIMIT 5\""
    ```
-   The domain-renewal loop should be present, with `origin_type = direct` and a due date. To see its
+   The billing-verification loop should be present, with `origin_type = direct` and a due date. To see its
    provenance, join through `created_from_artifact_id` → `evidence_edges` → `source_revisions` →
    `sources` and confirm the `message_id` matches the message you just sent, not a fixture message.
 7. Send a follow-up in the same conversation confirming completion (e.g. *"Done, renewed it."*),

@@ -80,7 +80,7 @@ behavior — every one preserves those guarantees while narrowing feature surfac
   `error`, `logger`, `broadcast`. There is also no available signal to identify "internal
   maintenance conversations" to skip, so that filter from plan §8 step 2 is not implemented; every
   conversation's stop event is captured.
-- **Live demo execution was not run in this session.** The Northstar demo seeds real conversations
+- **Live demo execution was not run in this session.** The Operator Week demo seeds real conversations
   into a real running assistant and drains real inference calls against them. Doing that requires a
   second assistant daemon bound to a disposable workspace (see `demo/RUNBOOK.md`), which this build
   session did not stand up. `bun install`, `bun run typecheck`, `bun test` (70/70 passing), and the

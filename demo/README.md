@@ -1,4 +1,4 @@
-# Threadkeeper Northstar demo
+# Threadkeeper Operator Week demo
 
 This is a deterministic, synthetic six-conversation demo spanning **January 8 through August 1, 2026**. It is intentionally separate from the user's real archive.
 
@@ -41,7 +41,7 @@ bun test test/demo/fixture.test.ts
 
 `demo-seed` uses the official conversation importer. Re-importing the same source keys must report skips rather than new conversations. Imported conversations do not exercise the live stop hook, so the seeder records IDs and the processor explicitly drains only the imported dataset through the plugin queue.
 
-`demo-process` calls the bounded `threadkeeper` `process_queue` action twice in the normal demo flow. `demo-verify` checks the resulting status, loops, reviews, search, and archaeology response for Northstar, client briefing, weekly-to-monthly correction, closed domain and issue-zero loops, open landing page due August 20, 2026, chronology, reuse proposal, and provenance-oriented output.
+`demo-process` calls the bounded `threadkeeper` `process_queue` action twice in the normal demo flow. `demo-verify` checks the resulting status, loops, reviews, search, and archaeology response for the Marlowe billing fix, invoice follow-up, the Wednesday-to-Thursday call-time correction, closed staging-ship and fix-summary loops, open production-verification due August 20, 2026, chronology, the invoice-to-billing bridge proposal, and provenance-oriented output.
 
 The full live stop-hook procedure is in [`live-stop-hook.md`](./live-stop-hook.md). The eight-minute presentation runbook is in [`runbook-eight-minutes.md`](./runbook-eight-minutes.md).
 

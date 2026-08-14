@@ -1,5 +1,5 @@
 /**
- * Verifies the Northstar demo's live state against `expected-results.json`.
+ * Verifies the Operator Week demo's live state against `expected-results.json`.
  *
  * Reads Threadkeeper's own SQLite file directly (read-only) rather than going through the
  * `threadkeeper` tool or plugin routes: `assistant tools run <plugin-tool>` does not execute
@@ -117,7 +117,7 @@ if (archaeologyJobs.length > 0 && archaeologyJobs[0]!.status === "succeeded" && 
 } else {
   console.error(
     "NOTE: no completed archaeology job found yet — this requires a real conversation turn asking about " +
-      'Northstar (e.g. "What happened to the Northstar newsletter?"). See RUNBOOK.md / LIVE-HOOK-PROCEDURE.md. Not counted as a failure.',
+      'the Marlowe billing fix (e.g. "What happened to the Marlowe billing fix?"). See RUNBOOK.md / LIVE-HOOK-PROCEDURE.md. Not counted as a failure.',
   );
 }
 

@@ -37,24 +37,24 @@ Open the Threadkeeper dashboard or run the supported tool action `list_open_loop
 
 Show:
 
-- **Open:** publish the Northstar landing page, due **August 20, 2026**.
-- **Closed:** buy the domain.
-- **Closed:** draft issue zero.
+- **Open:** verify the production billing fix against Marlowe's next invoice run, due **August 20, 2026**.
+- **Closed:** ship the billing fix to staging.
+- **Closed:** draft the customer-facing fix summary for Marlowe.
 
-Emphasize the distinction: issue-zero drafting and domain purchase are complete, but landing-page publication is not.
+Emphasize the distinction: shipping to staging and drafting the summary are complete, but production verification is not — the concrete unresolved deployment/verification loop that anchors this week's coding thread.
 
 ## 3:15-4:30 — Context Archaeology
 
 Ask:
 
-> How did the Northstar newsletter evolve, and why did the cadence change?
+> How did the Marlowe billing fix evolve, and why did the customer call move?
 
 The report should order evidence chronologically:
 
-1. **January 8:** weekly newsletter and launch tasks.
-2. **April 3:** interviews, podcast, and research database expand scope; launch is blocked, not proven abandoned.
-3. **June 18:** weekly is corrected to monthly; domain is bought; landing page remains unpublished.
-4. **August 1:** Northstar restarts; issue zero is drafted; landing page remains unresolved.
+1. **January 8:** duplicate line items reported on split-shipment invoices; the standing Wednesday 2:00 PM review call is captured.
+2. **April 3:** a related proration bug expands the fix scope; the fix is blocked, not proven abandoned.
+3. **June 18:** the fix ships to staging; the review call moves from Wednesday 2:00 PM to Thursday 10:00 AM.
+4. **August 1:** verification restarts; the fix is in production and the summary is drafted, but the invoice-run check remains unresolved.
 
 Show separate timeline, known, inferred, unknown, and unresolved sections with source/message provenance.
 
@@ -62,17 +62,17 @@ Show separate timeline, known, inferred, unknown, and unresolved sections with s
 
 Open review proposals. Show the reviewable supersession:
 
-> Replace the current weekly-cadence claim with monthly. Preserve weekly as historical context.
+> Move the Marlowe billing review call from Wednesday 2:00 PM to Thursday 10:00 AM. Preserve Wednesday as historical context.
 
-Accept the proposal if demonstrating the action flow. Verify that weekly remains historical evidence and monthly is current; no global memory file is silently edited.
+Accept the proposal if demonstrating the action flow. Verify that Wednesday 2:00 PM remains historical evidence and Thursday 10:00 AM is current; no global memory file is silently edited.
 
 ## 5:30-6:30 — Serendipity Engine
 
-Show the proposed `reuse` connection:
+Show the proposed `bridge` connection:
 
-> The client briefing format could provide Northstar's issue structure.
+> The Marlowe billing fix may be why Marlowe's retainer invoice is overdue.
 
-The explanation should cite both the client-briefing and Northstar/research threads, specifically five developments, why each matters, and one recommended action. Label it a hypothesis/proposal, not a fact or automatic action.
+The explanation should cite both the invoice-follow-up and billing-fix threads, specifically that Marlowe's AP contact is waiting on the fix landing in production. Label it a hypothesis/proposal, not a fact or automatic action — this is the demo's one precise cross-thread connection, and it stays a proposal until reviewed.
 
 Dismiss it once, reprocess, and show dismissal suppression: the same fingerprint does not return during its cooldown.
 
@@ -80,13 +80,13 @@ Dismiss it once, reprocess, and show dismissal suppression: the same fingerprint
 
 In a new disposable-workspace conversation, say:
 
-> For Northstar, I finished the landing-page copy. I still need to publish it by August 20, 2026.
+> The Marlowe billing fix is deployed to production. I still need to verify the next invoice run by August 20, 2026.
 
-End the turn. Show one dirty row, then manually execute the declared schedule. The loop stays open because finished copy is not a published page. Refer to [`live-stop-hook.md`](./live-stop-hook.md) for timing and failure-open checks.
+End the turn. Show one dirty row, then manually execute the declared schedule. The loop stays open because a production deploy is not the same as a verified invoice run. Refer to [`live-stop-hook.md`](./live-stop-hook.md) for timing and failure-open checks.
 
 ## 7:30-8:00 — deletion and close
 
-Delete the research-notes fixture through the supported conversation deletion path and process once more. Show that its derived records and private index document are removed, repeated cleanup is safe, and stale queued work cannot resurrect it.
+Delete the invoice-notes fixture through the supported conversation deletion path and process once more. Show that its derived records and private index document are removed, repeated cleanup is safe, and stale queued work cannot resurrect it.
 
 Finish with:
 

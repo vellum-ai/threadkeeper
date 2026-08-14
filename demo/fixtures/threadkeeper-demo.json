@@ -1,112 +1,113 @@
 {
-  "datasetId": "threadkeeper-demo-northstar-2026",
-  "description": "Deterministic six-conversation Northstar history for Threadkeeper demo and QA.",
+  "schemaVersion": 1,
+  "datasetId": "threadkeeper-demo-operator-week-2026",
+  "description": "Deterministic six-conversation Operator Week history for Threadkeeper demo and QA.",
   "conversations": [
     {
-      "sourceKey": "threadkeeper-demo:northstar-kickoff",
-      "title": "Northstar newsletter kickoff",
+      "sourceKey": "threadkeeper-demo:billing-bug-report",
+      "title": "Marlowe billing bug report",
       "createdAt": 1767830400000,
       "updatedAt": 1767830400000,
       "messages": [
         {
           "role": "user",
           "createdAt": 1767830400000,
-          "content": "I want to launch a weekly newsletter called Northstar. I still need to buy the domain, publish a landing page, and draft issue zero. The smallest useful launch is a clear landing page, the domain, and one first issue."
+          "content": "Marlowe Freight is seeing duplicate line items on invoices for split shipments — customers are being overcharged. I need to trace the split-shipment billing path and confirm which invoices are affected before anything else. The smallest useful fix is finding the root cause, patching the billing path, and verifying one corrected invoice."
         },
         {
           "role": "assistant",
           "createdAt": 1767888060000,
-          "content": "Captured the Northstar launch work: buy the domain, publish the landing page, and draft issue zero. The intended cadence is weekly."
+          "content": "Captured the Marlowe billing bug: split-shipment invoices show duplicate line items. Next steps are tracing the billing path, patching it, and verifying a corrected invoice. The standing Marlowe review call remains Wednesday at 2:00 PM."
         }
       ]
     },
     {
-      "sourceKey": "threadkeeper-demo:client-briefing-workflow",
-      "title": "Client briefing workflow",
+      "sourceKey": "threadkeeper-demo:invoice-workflow",
+      "title": "Invoice follow-up workflow",
       "createdAt": 1771027200000,
       "updatedAt": 1771027200000,
       "messages": [
         {
           "role": "user",
           "createdAt": 1771027200000,
-          "content": "The client briefing format worked well: select five important developments, explain why each matters, then give one recommended action. I want a reusable source-monitoring workflow rather than a long link dump."
+          "content": "The invoice follow-up format worked well: check three signals — days overdue, any open support issue, and payment history — explain why each matters, then give one recommended follow-up action. I want a reusable invoice follow-up workflow instead of ad hoc reminder emails."
         },
         {
           "role": "assistant",
           "createdAt": 1771027260000,
-          "content": "The reusable structure is five developments, why they matter, and one recommended action, backed by a repeatable monitoring workflow."
+          "content": "The reusable structure is three signals — days overdue, open support issues, and payment history — why they matter, and one recommended follow-up action."
         }
       ]
     },
     {
-      "sourceKey": "threadkeeper-demo:northstar-expansion",
-      "title": "Northstar scope expansion",
+      "sourceKey": "threadkeeper-demo:fix-scope-grows",
+      "title": "Billing fix scope grows",
       "createdAt": 1775174400000,
       "updatedAt": 1775174400000,
       "messages": [
         {
           "role": "user",
           "createdAt": 1775174400000,
-          "content": "Northstar could expand beyond a newsletter into interviews, a podcast, and a research database. The scope has become too large to launch right now. I am blocked by the expanding scope, but I am not declaring the project abandoned."
+          "content": "The split-shipment bug traces back further than expected — there is a related proration bug when a shipment splits mid-billing-cycle. The billing fix scope has grown beyond the original patch. I am blocked tracing the proration logic, but I am not abandoning the fix."
         },
         {
           "role": "assistant",
           "createdAt": 1775174460000,
-          "content": "Recorded a scope-expansion event and an unresolved launch blocker. The evidence does not establish permanent abandonment."
+          "content": "Recorded a scope-expansion event and an unresolved blocker on the proration logic. The evidence does not establish the billing fix being abandoned."
         }
       ]
     },
     {
-      "sourceKey": "threadkeeper-demo:northstar-correction",
-      "title": "Northstar cadence correction",
+      "sourceKey": "threadkeeper-demo:call-rescheduled",
+      "title": "Marlowe call rescheduled",
       "createdAt": 1781740800000,
       "updatedAt": 1781740800000,
       "messages": [
         {
           "role": "user",
           "createdAt": 1781740800000,
-          "content": "Actually, monthly is better than weekly. Weekly was too much. I bought the Northstar domain, but the landing page still is not published. Keep weekly as historical context, but the current cadence should be monthly."
+          "content": "The billing fix is close to ready — I shipped the fix to staging. But I need to move the standing Marlowe review call: it was Wednesday at 2:00 PM, but that conflicts with another commitment. Moving it to Thursday at 10:00 AM instead. Keep Wednesday 2:00 PM as historical context, but the current call time is Thursday 10:00 AM."
         },
         {
           "role": "assistant",
           "createdAt": 1781740860000,
-          "content": "The domain purchase is complete. The weekly cadence is superseded by a monthly cadence, and the landing page remains open."
+          "content": "Staging deploy noted. The Wednesday 2:00 PM call time is superseded by Thursday 10:00 AM for the standing Marlowe billing review."
         }
       ]
     },
     {
-      "sourceKey": "threadkeeper-demo:research-notes",
-      "title": "Research notes for actionable analysis",
+      "sourceKey": "threadkeeper-demo:invoice-notes",
+      "title": "Invoice follow-up notes",
       "createdAt": 1783555200000,
       "updatedAt": 1783555200000,
       "messages": [
         {
           "role": "user",
           "createdAt": 1783555200000,
-          "content": "I want a repeatable way to turn monitoring research into short, actionable analysis. The client briefing structure of five developments, why they matter, and one action could be reused for a newsletter issue."
+          "content": "I want a repeatable way to check in on overdue invoices instead of guessing. Marlowe's retainer invoice is overdue, and their AP contact mentioned they are waiting on the billing fix. The invoice follow-up structure of three signals, why they matter, and one action could apply here."
         },
         {
           "role": "assistant",
           "createdAt": 1783555260000,
-          "content": "This may connect the client briefing workflow to Northstar as a possible issue structure. Treat that as a proposal, not a fact."
+          "content": "This may connect the invoice follow-up workflow to the Marlowe billing fix as a possible reason for the overdue invoice. Treat that as a proposal, not a fact."
         }
       ]
     },
     {
-      "sourceKey": "threadkeeper-demo:northstar-restart",
-      "title": "Northstar restart",
+      "sourceKey": "threadkeeper-demo:fix-verification-restart",
+      "title": "Billing fix verification restart",
       "createdAt": 1785542400000,
       "updatedAt": 1785542400000,
       "messages": [
         {
           "role": "user",
           "createdAt": 1785542400000,
-          "content": "I am restarting Northstar. Issue zero is drafted, but the landing page is still unpublished. I want to publish the page by August 20, 2026. Drafting issue zero is complete; publishing the landing page is still open."
+          "content": "I am restarting verification on the Marlowe billing fix. It is deployed to production, and I have drafted the customer-facing fix summary for Marlowe. I still need to confirm the next invoice run has no duplicate line items. I want that verified by August 20, 2026, before the standing Thursday call with Marlowe."
         },
         {
           "role": "assistant",
           "createdAt": 1785542460000,
-          "content": "Northstar is active again after dormancy. Issue zero is complete. The landing-page publication loop remains open with a due date of August 20, 2026."
+          "content": "Marlowe billing fix is active again after the scope delay. The fix is deployed to production and the customer-facing summary is drafted. The invoice-verification loop remains open with a due date of August 20, 2026."
         }
       ]
     }
