@@ -2,7 +2,7 @@
 
 ## Runtime target
 
-Built against Vellum Assistant and `@vellumai/plugin-api` version `0.11.3-dev.202608130259.289776e`. The peer dependency must use a real compatible range below 1.0.
+Built against Vellum Assistant with `@vellumai/plugin-api` `0.11.3-dev.202608132015.f8ab72f` as the pinned development dependency. The runtime peer dependency remains `>=0.11.0 <1.0.0`.
 
 ## Verified runtime behavior
 
@@ -26,7 +26,7 @@ The initial schedule runs every 15 minutes and invokes an execute turn even when
 
 ## Distribution
 
-This workspace build is a local user plugin. Marketplace publication requires a separate repository, a full commit SHA, catalog metadata, and review. No external repository or publication action is performed as part of the local build.
+The standalone source repository is `vellum-ai/threadkeeper`. Marketplace releases pin a full immutable commit SHA in the `vellum-ai/vellum-assistant` catalog and remain subject to Vellum review.
 
 ## Deliberate reduced-scope decisions made during implementation
 

@@ -1,5 +1,5 @@
 {
-  "name": "@vellumai/threadkeeper",
+  "name": "threadkeeper",
   "version": "0.1.0",
   "description": "Evidence-backed continuity: open loops, context archaeology, memory gardening, and serendipitous connections across conversations.",
   "private": true,
