@@ -57,9 +57,28 @@ export function initDb(pluginStorageDir: string): Database {
  * Documented fallback for surfaces that may run before `init` populated the singleton (or in a
  * separate execution context). Resolves the same path an installed plugin's `init` would have used.
  */
-function fallbackPath(): string {
-  const apiWorkspaceDir = (pluginApi as { getWorkspaceDir?: () => string }).getWorkspaceDir?.();
-  const workspaceDir = apiWorkspaceDir || process.env.VELLUM_WORKSPACE_DIR;
+type WorkspaceDirProvider = (() => string | undefined) | null | undefined;
+
+/**
+ * Resolve the canonical installed-plugin database path. The plugin API helper is preferred, but
+ * fresh scheduler/route contexts may omit it or expose a helper that throws before the database
+ * can be opened; in either case the workspace environment variable is the safe fallback.
+ *
+ * The optional arguments keep this narrow resolver directly testable without changing the runtime
+ * plugin API module or the database singleton behavior.
+ */
+export function resolveDatabasePath(
+  getWorkspaceDir: WorkspaceDirProvider = (pluginApi as { getWorkspaceDir?: () => string }).getWorkspaceDir,
+  envWorkspaceDir?: string,
+): string {
+  let apiWorkspaceDir: string | undefined;
+  try {
+    apiWorkspaceDir = getWorkspaceDir?.();
+  } catch {
+    // A broken optional plugin API helper must not prevent the environment fallback.
+  }
+  const configuredEnvWorkspaceDir = arguments.length >= 2 ? envWorkspaceDir : process.env.VELLUM_WORKSPACE_DIR;
+  const workspaceDir = apiWorkspaceDir || configuredEnvWorkspaceDir;
   if (!workspaceDir) {
     throw new ThreadkeeperError(
       "DB_UNAVAILABLE",
@@ -73,7 +92,7 @@ function fallbackPath(): string {
 export function getDb(): Database {
   const state = databaseState();
   if (state.db) return state.db;
-  const path = fallbackPath();
+  const path = resolveDatabasePath();
   state.db = openDatabase(path);
   state.path = path;
   return state.db;

@@ -4,7 +4,7 @@ import { Database } from "bun:sqlite";
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { openDatabase } from "../../src/db.ts";
+import { openDatabase, resolveDatabasePath } from "../../src/db.ts";
 import { SCHEMA_VERSION } from "../../src/migrations.ts";
 import { createProposal } from "../../src/repositories/review.ts";
 
@@ -14,6 +14,35 @@ function tmpPath(): string {
 }
 
 describe("database", () => {
+  test("resolver prefers the plugin API workspace path", () => {
+    expect(resolveDatabasePath(() => "/plugin-api-workspace", "/env-workspace")).toBe(
+      "/plugin-api-workspace/plugins/threadkeeper/data/threadkeeper.sqlite",
+    );
+  });
+
+  test("resolver falls back to the environment when the plugin API helper throws", () => {
+    expect(resolveDatabasePath(() => {
+      throw new Error("plugin API unavailable");
+    }, "/env-workspace")).toBe("/env-workspace/plugins/threadkeeper/data/threadkeeper.sqlite");
+  });
+
+  test("resolver falls back to the environment when the plugin API helper is missing", () => {
+    expect(resolveDatabasePath(null, "/env-workspace")).toBe(
+      "/env-workspace/plugins/threadkeeper/data/threadkeeper.sqlite",
+    );
+  });
+
+  test("resolver preserves the stable DB_UNAVAILABLE failure when both sources are unavailable", () => {
+    expect(() => resolveDatabasePath(null, undefined)).toThrowError(
+      new Error("workspace directory is unavailable before the Threadkeeper init hook"),
+    );
+    try {
+      resolveDatabasePath(null, undefined);
+    } catch (error) {
+      expect((error as { code?: string }).code).toBe("DB_UNAVAILABLE");
+    }
+  });
+
   test("fresh database applies every migration", () => {
     const db = openDatabase(tmpPath());
     const version = (db.query("PRAGMA user_version").get() as { user_version: number }).user_version;

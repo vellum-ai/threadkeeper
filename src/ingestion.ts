@@ -5,7 +5,7 @@
  * derived from this batch have committed (see queueProcessor.ts), so a crash between ingestion and
  * extraction is safely retried rather than silently skipping the batch.
  */
-import { getMessages, isConversationProcessing, stringifyMessageContent } from "@vellumai/plugin-api";
+import * as pluginApi from "@vellumai/plugin-api";
 import { getDb } from "./db.ts";
 import { contentHash } from "./ids.ts";
 import { isTombstoned } from "./repositories/audit.ts";
@@ -33,16 +33,30 @@ export interface IngestResult {
 
 const EXCERPT_CHARS = 600;
 
+type ProcessingApi = {
+  isConversationProcessing?: (conversationId: string) => Promise<boolean> | boolean;
+};
+
+/**
+ * Older plugin-api runtimes do not export isConversationProcessing. Keep the
+ * optional capability check at the boundary so fresh route/scheduler contexts
+ * continue ingestion instead of failing during module evaluation or invocation.
+ */
+export async function isConversationCurrentlyProcessing(api: ProcessingApi, conversationId: string): Promise<boolean> {
+  const helper = api.isConversationProcessing;
+  return typeof helper === "function" ? await helper(conversationId) : false;
+}
+
 export async function ingestConversation(conversationId: string, maxMessages: number): Promise<IngestResult> {
   const db = getDb();
   if (isTombstoned(db, "conversation", conversationId)) {
     return { status: "tombstoned", newRevisions: [], lastMessageId: null, hasMore: false };
   }
-  if (await isConversationProcessing(conversationId)) {
+  if (await isConversationCurrentlyProcessing(pluginApi, conversationId)) {
     return { status: "conversation_active", newRevisions: [], lastMessageId: null, hasMore: false };
   }
 
-  const rows = await getMessages(conversationId);
+  const rows = await pluginApi.getMessages(conversationId);
   const finalized = rows
     .filter((row) => row.finalized === 1 && (row.role === "user" || row.role === "assistant"))
     .slice()
@@ -73,7 +87,7 @@ export async function ingestConversation(conversationId: string, maxMessages: nu
 
   const newRevisions: IngestedMessage[] = [];
   for (const row of batch) {
-    const text = stringifyMessageContent(row.content);
+    const text = pluginApi.stringifyMessageContent(row.content);
     if (!text.trim()) continue; // pure tool-call / structural turn — no spoken evidence to capture
     const source = upsertSource(db, {
       sourceType: "conversation_message",

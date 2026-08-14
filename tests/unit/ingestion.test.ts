@@ -2,7 +2,7 @@ import "../fixtures/plugin-api-mock.ts";
 import { beforeEach, describe, expect, test } from "bun:test";
 import { addMockMessage, resetMockState, mockState } from "../fixtures/plugin-api-mock.ts";
 import { freshDb } from "../fixtures/test-db.ts";
-import { ingestConversation } from "../../src/ingestion.ts";
+import { ingestConversation, isConversationCurrentlyProcessing } from "../../src/ingestion.ts";
 import { advanceCursor, getCursor } from "../../src/repositories/queue.ts";
 import { getDb } from "../../src/db.ts";
 
@@ -10,6 +10,16 @@ describe("ingestion", () => {
   beforeEach(() => {
     resetMockState();
     freshDb();
+  });
+
+  test("returns busy when the optional processing helper reports an active conversation", async () => {
+    const busy = await isConversationCurrentlyProcessing({ isConversationProcessing: async () => true }, "conv-busy");
+    expect(busy).toBe(true);
+  });
+
+  test("treats a runtime without the optional processing helper as not busy", async () => {
+    const busy = await isConversationCurrentlyProcessing({}, "conv-without-helper");
+    expect(busy).toBe(false);
   });
 
   test("a fixture conversation is ingested exactly once", async () => {
