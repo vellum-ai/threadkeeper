@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "captureEnabled": true,
+  "automaticContextInjection": false,
+  "backfillMode": "future_only",
+  "backfillScope": { "kind": "preset", "preset": "future_only" },
+  "maxJobsPerRun": 5,
+  "maxMessagesPerConversationRun": 100,
+  "maxExtractionChars": 40000,
+  "modelProfile": null,
+  "serendipity": {
+    "enabled": true,
+    "minimumScore": 0.72,
+    "maxCandidatesPerRun": 3,
+    "dismissalCooldownDays": 30,
+    "sensitiveCategoriesEnabled": false
+  },
+  "retention": {
+    "rawExcerptDays": 90,
+    "runAuditDays": 180
+  },
+  "sources": {
+    "conversations": true,
+    "workspaceFiles": false,
+    "allowedPaths": []
+  }
+}

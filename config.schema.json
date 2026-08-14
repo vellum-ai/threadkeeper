@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "integer" },
+    "captureEnabled": { "type": "boolean" },
+    "automaticContextInjection": { "type": "boolean" },
+    "backfillMode": { "enum": ["future_only", "last_30_days", "last_90_days", "all"] },
+    "backfillScope": {
+      "oneOf": [
+        { "type": "object", "required": ["kind", "preset"], "properties": { "kind": { "const": "preset" }, "preset": { "enum": ["future_only", "last_30_days", "last_90_days", "all"] }, "confirmAllHistory": { "type": "boolean" } }, "additionalProperties": false },
+        { "type": "object", "required": ["kind", "days"], "properties": { "kind": { "const": "days" }, "days": { "type": "integer", "minimum": 1, "maximum": 36500 } }, "additionalProperties": false },
+        { "type": "object", "required": ["kind", "startDate", "endDate"], "properties": { "kind": { "const": "range" }, "startDate": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }, "endDate": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" } }, "additionalProperties": false }
+      ]
+    },
+    "maxJobsPerRun": { "type": "integer", "minimum": 1, "maximum": 50 },
+    "maxMessagesPerConversationRun": { "type": "integer", "minimum": 1, "maximum": 1000 },
+    "maxExtractionChars": { "type": "integer", "minimum": 1000, "maximum": 200000 },
+    "modelProfile": { "type": ["string", "null"] },
+    "serendipity": { "type": "object" },
+    "retention": { "type": "object" },
+    "sources": { "type": "object" }
+  }
+}

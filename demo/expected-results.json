@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "threadkeeper-demo-northstar-2026",
+  "sourceKeys": [
+    "threadkeeper-demo:northstar-kickoff",
+    "threadkeeper-demo:client-briefing-workflow",
+    "threadkeeper-demo:northstar-expansion",
+    "threadkeeper-demo:northstar-correction",
+    "threadkeeper-demo:research-notes",
+    "threadkeeper-demo:northstar-restart"
+  ],
+  "dateRange": {
+    "start": "2026-01-08",
+    "end": "2026-08-01"
+  },
+  "threads": {
+    "minimum": 2,
+    "requiredConcepts": ["Northstar", "client briefing"],
+    "requiredSourceKeyCoverage": {
+      "Northstar": [
+        "threadkeeper-demo:northstar-kickoff",
+        "threadkeeper-demo:northstar-expansion",
+        "threadkeeper-demo:northstar-correction",
+        "threadkeeper-demo:northstar-restart"
+      ],
+      "client briefing": [
+        "threadkeeper-demo:client-briefing-workflow",
+        "threadkeeper-demo:research-notes"
+      ]
+    }
+  },
+  "openLoops": {
+    "requiredOpen": [
+      {
+        "concept": "publish landing page",
+        "dueDate": "2026-08-20",
+        "status": "open"
+      }
+    ],
+    "requiredClosed": [
+      { "concept": "buy domain", "status": "closed" },
+      { "concept": "draft issue zero", "status": "closed" }
+    ],
+    "forbiddenOpenConcepts": ["buy domain", "draft issue zero"],
+    "completionDistinction": "writing landing-page copy is not publishing the landing page"
+  },
+  "claims": {
+    "requiredCurrent": ["monthly cadence"],
+    "requiredHistorical": ["weekly cadence"],
+    "supersession": {
+      "old": "weekly cadence",
+      "new": "monthly cadence",
+      "requiresReviewableProposal": true
+    }
+  },
+  "archaeology": {
+    "threadConcept": "Northstar",
+    "minimumTimelineEvents": 4,
+    "requiredChronology": [
+      { "date": "2026-01-08", "concept": "weekly" },
+      { "date": "2026-04-03", "concept": "scope expansion" },
+      { "date": "2026-06-18", "concept": "monthly" },
+      { "date": "2026-08-01", "concept": "restart" }
+    ],
+    "requiredSections": ["timeline", "known", "inferred", "unknown", "unresolved"],
+    "mustNotConclude": ["permanently abandoned"]
+  },
+  "connections": {
+    "required": [
+      {
+        "relationType": "reuse",
+        "fromConcept": "client briefing",
+        "toConcept": "Northstar",
+        "proposalOnly": true,
+        "explanationConcepts": ["five developments", "why each matters", "one recommended action"],
+        "requiresEvidenceFromBothThreads": true
+      }
+    ],
+    "dismissalSuppression": {
+      "candidate": "client briefing -> Northstar reuse",
+      "dismissThenReprocess": "must remain suppressed"
+    }
+  },
+  "deletion": {
+    "sourceKey": "threadkeeper-demo:research-notes",
+    "mustRemoveDerivedState": true,
+    "mustRemovePrivateIndexDocument": true,
+    "repeatedCleanupIsSafe": true
+  },
+  "idempotency": {
+    "reimportSameSourceKeys": "no new conversations",
+    "reprocessSameMessages": "no duplicate sources, revisions, proposals, or connections"
+  },
+  "failureOpen": {
+    "simulations": ["provider unavailable", "malformed provider output", "private index unavailable", "database unavailable"],
+    "normalConversationMustContinue": true,
+    "partialSqliteCommitIsAcceptable": true
+  },
+  "privacy": {
+    "rawFixtureTranscriptsMustNotAppearInStructuredLogs": true,
+    "sensitiveCategoriesExcludedByDefault": true
+  }
+}

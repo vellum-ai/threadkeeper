@@ -1,0 +1,114 @@
+{
+  "datasetId": "threadkeeper-demo-northstar-2026",
+  "description": "Deterministic six-conversation Northstar history for Threadkeeper demo and QA.",
+  "conversations": [
+    {
+      "sourceKey": "threadkeeper-demo:northstar-kickoff",
+      "title": "Northstar newsletter kickoff",
+      "createdAt": 1767830400000,
+      "updatedAt": 1767830400000,
+      "messages": [
+        {
+          "role": "user",
+          "createdAt": 1767830400000,
+          "content": "I want to launch a weekly newsletter called Northstar. I still need to buy the domain, publish a landing page, and draft issue zero. The smallest useful launch is a clear landing page, the domain, and one first issue."
+        },
+        {
+          "role": "assistant",
+          "createdAt": 1767888060000,
+          "content": "Captured the Northstar launch work: buy the domain, publish the landing page, and draft issue zero. The intended cadence is weekly."
+        }
+      ]
+    },
+    {
+      "sourceKey": "threadkeeper-demo:client-briefing-workflow",
+      "title": "Client briefing workflow",
+      "createdAt": 1771027200000,
+      "updatedAt": 1771027200000,
+      "messages": [
+        {
+          "role": "user",
+          "createdAt": 1771027200000,
+          "content": "The client briefing format worked well: select five important developments, explain why each matters, then give one recommended action. I want a reusable source-monitoring workflow rather than a long link dump."
+        },
+        {
+          "role": "assistant",
+          "createdAt": 1771027260000,
+          "content": "The reusable structure is five developments, why they matter, and one recommended action, backed by a repeatable monitoring workflow."
+        }
+      ]
+    },
+    {
+      "sourceKey": "threadkeeper-demo:northstar-expansion",
+      "title": "Northstar scope expansion",
+      "createdAt": 1775174400000,
+      "updatedAt": 1775174400000,
+      "messages": [
+        {
+          "role": "user",
+          "createdAt": 1775174400000,
+          "content": "Northstar could expand beyond a newsletter into interviews, a podcast, and a research database. The scope has become too large to launch right now. I am blocked by the expanding scope, but I am not declaring the project abandoned."
+        },
+        {
+          "role": "assistant",
+          "createdAt": 1775174460000,
+          "content": "Recorded a scope-expansion event and an unresolved launch blocker. The evidence does not establish permanent abandonment."
+        }
+      ]
+    },
+    {
+      "sourceKey": "threadkeeper-demo:northstar-correction",
+      "title": "Northstar cadence correction",
+      "createdAt": 1781740800000,
+      "updatedAt": 1781740800000,
+      "messages": [
+        {
+          "role": "user",
+          "createdAt": 1781740800000,
+          "content": "Actually, monthly is better than weekly. Weekly was too much. I bought the Northstar domain, but the landing page still is not published. Keep weekly as historical context, but the current cadence should be monthly."
+        },
+        {
+          "role": "assistant",
+          "createdAt": 1781740860000,
+          "content": "The domain purchase is complete. The weekly cadence is superseded by a monthly cadence, and the landing page remains open."
+        }
+      ]
+    },
+    {
+      "sourceKey": "threadkeeper-demo:research-notes",
+      "title": "Research notes for actionable analysis",
+      "createdAt": 1783555200000,
+      "updatedAt": 1783555200000,
+      "messages": [
+        {
+          "role": "user",
+          "createdAt": 1783555200000,
+          "content": "I want a repeatable way to turn monitoring research into short, actionable analysis. The client briefing structure of five developments, why they matter, and one action could be reused for a newsletter issue."
+        },
+        {
+          "role": "assistant",
+          "createdAt": 1783555260000,
+          "content": "This may connect the client briefing workflow to Northstar as a possible issue structure. Treat that as a proposal, not a fact."
+        }
+      ]
+    },
+    {
+      "sourceKey": "threadkeeper-demo:northstar-restart",
+      "title": "Northstar restart",
+      "createdAt": 1785542400000,
+      "updatedAt": 1785542400000,
+      "messages": [
+        {
+          "role": "user",
+          "createdAt": 1785542400000,
+          "content": "I am restarting Northstar. Issue zero is drafted, but the landing page is still unpublished. I want to publish the page by August 20, 2026. Drafting issue zero is complete; publishing the landing page is still open."
+        },
+        {
+          "role": "assistant",
+          "createdAt": 1785542460000,
+          "content": "Northstar is active again after dormancy. Issue zero is complete. The landing-page publication loop remains open with a due date of August 20, 2026."
+        }
+      ]
+    }
+  ]
+}

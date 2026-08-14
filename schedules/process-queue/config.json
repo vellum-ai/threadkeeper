@@ -1,0 +1,10 @@
+{
+  "expression": "*/15 * * * *",
+  "expression_syntax": "cron",
+  "description": "Process queued Threadkeeper conversation changes",
+  "quiet": true,
+  "max_retries": 2,
+  "retry_backoff_ms": 60000,
+  "timeout_ms": 300000,
+  "enabled": true
+}

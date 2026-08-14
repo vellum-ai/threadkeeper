@@ -1,0 +1,21 @@
+# Dependencies and generated app output
+node_modules/
+apps/*/dist/
+*.tsbuildinfo
+
+# Private plugin-owned runtime state
+data/
+*.sqlite
+*.sqlite-*
+*.sqlite.*
+*.db
+*.db-*
+*.db.*
+
+# Generated demo output
+demo/state.json
+demo/*.output.json
+
+# Local artifacts
+*.log
+.DS_Store

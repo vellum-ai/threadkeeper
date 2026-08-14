@@ -1,0 +1,1 @@
+Process Threadkeeper's pending queue now. Call the threadkeeper tool with action process_queue and maxJobs 5. Do not generate a user-facing summary. If the queue is empty, stop immediately. If a recoverable item fails, leave it retryable. Only surface a persistent plugin failure that requires the user's attention. Never inspect or expose raw conversation content.

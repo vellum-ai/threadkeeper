@@ -1,0 +1,4 @@
+type Core = Record<string, unknown>;
+async function core(): Promise<Core> { return (await import("../src/index.ts")) as Core; }
+function fail(code: string, message: string, status = 400): Response { return Response.json({ ok: false, error: { code, message } }, { status }); }
+export async function GET(request: Request): Promise<Response> { const id = new URL(request.url).searchParams.get("id"); if (!id || !/^[A-Za-z0-9_-]{8,128}$/.test(id)) return fail("ROUTE_VALIDATION_FAILED", "id is required"); try { const loaded = await core(); const fn = loaded.getJob; if (typeof fn !== "function") return fail("DB_UNAVAILABLE", "Threadkeeper core is not ready"); return Response.json(await (fn as (x: unknown) => unknown)({ id })); } catch { return fail("DB_UNAVAILABLE", "Job status is temporarily unavailable"); } }
